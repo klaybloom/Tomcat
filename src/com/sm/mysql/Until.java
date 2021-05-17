@@ -73,12 +73,12 @@ public class Until {
 
 
     //查询所有
-    public static <T> List<T> query(String sql,T t, Object... para) throws SQLException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
+    public static <T> List<T> query(String sql,Class<T> tClass, Object... para) throws SQLException, IllegalAccessException, InvocationTargetException, InstantiationException, NoSuchMethodException {
         List<T> list=new ArrayList<>();
         Connection conn = getConn();
         //运行sql语句
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
-        Constructor<?> declaredConstructor = t.getClass().getDeclaredConstructor(ResultSet.class);
+        Constructor<?> declaredConstructor = tClass.getDeclaredConstructor(ResultSet.class);
         declaredConstructor.setAccessible(true);
         //给占位符赋值
         for (int i = 0; i < para.length; i++) {
