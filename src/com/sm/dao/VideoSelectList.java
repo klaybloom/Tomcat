@@ -14,7 +14,7 @@ public class VideoSelectList {
         String sql="SELECT * FROM zr_video_info LIMIT ?,?;";
         List<VideoInfo> videoInfoList = null;
         try {
-            videoInfoList = Until.query(sql, VideoInfo.class.newInstance(), num,size);
+            videoInfoList = Until.query(sql, VideoInfo.class, num,size);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (IllegalAccessException e) {
